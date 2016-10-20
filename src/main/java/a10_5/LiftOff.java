@@ -29,7 +29,6 @@ public class LiftOff implements Runnable {
 				System.out.println(status());
 				TimeUnit.MICROSECONDS.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

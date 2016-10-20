@@ -22,7 +22,6 @@ public class writeTxtFile {
 			RandomAccessFile aa=new RandomAccessFile(file, "rw");
 			writeLineFile(aa, write, true);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

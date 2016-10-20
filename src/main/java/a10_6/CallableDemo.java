@@ -1,14 +1,7 @@
 package a10_6;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
-import org.omg.CORBA.TIMEOUT;
+import java.util.concurrent.*;
 
 class TaskWithResult implements Callable<String> {
 	private int id;
@@ -32,10 +25,8 @@ public class CallableDemo {
 			try {
 				System.out.println(future.get());
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println(future.isDone());

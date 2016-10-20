@@ -10,7 +10,6 @@
  */
 package log;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -33,7 +32,6 @@ public class TimeBook implements TimeBookInterface
     @Override
     public void doAuditing(String name)
     {
-        // TODO Auto-generated method stub
 //        System.out.println(this.getClass().getName());
         System.out.println(this.getClass().getClassLoader());
         System.out.println(name + " is doing something about auditing...");

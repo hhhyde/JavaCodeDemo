@@ -17,7 +17,6 @@ public class Temp {
 		try {
 			test1=Class.forName("a10_2.Test11");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(test1.getDeclaredField("staticFinal").getInt("staticFinal"));

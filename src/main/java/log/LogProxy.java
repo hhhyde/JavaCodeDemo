@@ -50,7 +50,6 @@ public class LogProxy implements InvocationHandler
     public Object invoke(Object obj, Method method, Object[] aobj)
         throws Throwable
     {
-        // TODO Auto-generated method stub
         Object result = null;
         try
         {
@@ -60,7 +59,6 @@ public class LogProxy implements InvocationHandler
         }
         catch (Exception e)
         {
-            // TODO: handle exception
             logger.log(Level.INFO, e.toString());
         }
         return null;

@@ -19,7 +19,6 @@ public class FileTestTest {
 //		try {
 //			System.out.println(FileTest.read("C:/Users/ke/Desktop/test.txt"));
 //		} catch (IOException e) {
-//			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 //	}

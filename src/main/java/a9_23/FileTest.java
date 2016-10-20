@@ -1,10 +1,6 @@
 package a9_23;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 
 public class FileTest {
@@ -22,10 +18,8 @@ public class FileTest {
 			System.out.println(Arrays.toString(bytes));
 			out.write(bytes);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

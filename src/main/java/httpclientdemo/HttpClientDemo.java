@@ -85,7 +85,6 @@ public class HttpClientDemo {
 		Queue<Future<Content>> queue = new LinkedList<Future<Content>>();
 		// 异步执行GET请求
 		for (final Request request : requests) {
-			System.out.println("H");
 			Future<Content> future = async.execute(request, new FutureCallback<Content>() {
 
 				public void failed(final Exception ex) {
