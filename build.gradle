@@ -19,5 +19,6 @@ dependencies {
             'com.alibaba:fastjson:1.2.18',
             'org.jsoup:jsoup:1.9.2',
             'org.apache.axis2:axis2:1.6.1',
+            'redis.clients:jedis:2.9.0',
             'junit:junit:4.12'
 }

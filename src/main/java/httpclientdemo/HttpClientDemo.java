@@ -15,17 +15,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 import static org.apache.http.client.fluent.Request.Get;
 
 public class HttpClientDemo {
-	public static void main(String[] args) throws InterruptedException {
-		HttpClientDemo demo = new HttpClientDemo();
-		demo.fluentAsync();
+	public static void main(String[] args) throws InterruptedException, TimeoutException {
+		//HttpClientDemo demo = new HttpClientDemo();
+		//demo.fluentAsync();
+		Queue<Future<Content>> queue = new LinkedList<Future<Content>>();
+		Future s = queue.poll();
+		System.out.println(s);
 	}
 
 	/***
@@ -71,17 +71,19 @@ public class HttpClientDemo {
 	 *
 	 * @throws InterruptedException
 	 */
-	private void fluentAsync() throws InterruptedException {
+	private void fluentAsync() throws InterruptedException, TimeoutException {
 		// 创建一个可重用固定线程数的线程池，以共享的无界队列方式来运行这些线程。
 		ExecutorService threadPool = Executors.newFixedThreadPool(2);
+		// 装入Async内部参数
 		Async async = Async.newInstance().use(threadPool);
 
 		Request[] requests = new Request[]{
-				Get("http://www.google.com/"),
 				Get("http://www.yahoo.com/"),
+				Get("http://www.google.com/"),
 				Get("http://www.apache.com/"),
 				Get("http://www.apple.com/")
 		};
+		// 定义ExecutorService.execute的返回future序列
 		Queue<Future<Content>> queue = new LinkedList<Future<Content>>();
 		// 异步执行GET请求
 		for (final Request request : requests) {
@@ -92,6 +94,7 @@ public class HttpClientDemo {
 				}
 
 				public void completed(final Content content) {
+					// content 是请求的返回值
 					System.out.println("Request completed: " + request);
 				}
 
@@ -105,6 +108,7 @@ public class HttpClientDemo {
 		while (!queue.isEmpty()) {
 			Future<Content> future = queue.remove();
 			try {
+				// 等待future执行完毕,不制定超时时间.返回future的请求响应,上面已经去过了
 				future.get();
 			} catch (ExecutionException ex) {
 			}
