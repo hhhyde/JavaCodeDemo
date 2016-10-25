@@ -2,7 +2,10 @@ package com.example.webmvc.action;
 
 import com.example.webmvc.framework.BaseController;
 import com.example.webmvc.framework.FormModel;
+import com.example.webmvc.mapper.RoleMapper;
+import com.example.webmvc.model.Role;
 import com.example.webmvc.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("welcome")
 @Scope("prototype")
 public class WelcomeController extends BaseController {
+
+	@Autowired()
+	private RoleMapper roleMapper;
+
 	@RequestMapping("")
 	public String welcome() {
 		return "index";
@@ -53,6 +60,13 @@ public class WelcomeController extends BaseController {
 	@RequestMapping("form")
 	public String form(@FormModel("user") User user) {
 		return user.toString();
+	}
+
+	@ResponseBody
+	@RequestMapping("testDB")
+	public String testDB(){
+		Role role = roleMapper.getRole("75");
+		return "200";
 	}
 
 }
