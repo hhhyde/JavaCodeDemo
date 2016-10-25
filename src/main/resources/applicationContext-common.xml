@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+    <!--&lt;!&ndash;  spring整合ibatis    &ndash;&gt; -->
+	<!--<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">-->
+		<!--<property name="configLocation">-->
+			<!--<value>classpath:sqlMapConfig.xml</value>-->
+		<!--</property>-->
+		<!--<property name="dataSource" ref="dataSource"></property>-->
+	<!--</bean>-->
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED" />
+        </tx:attributes>
+    </tx:advice>
+    
+    <aop:config>
+        <aop:pointcut id="interceptorPointCuts"
+            expression="execution(* com.example.*.service..*.*(..))  || execution(* com.example.quartz.*.*(..)) " />
+        <aop:advisor advice-ref="txAdvice"
+            pointcut-ref="interceptorPointCuts" />        
+    </aop:config>      
+  	
+  	<!-- 激活没有接口实现的类，用于底盘动态 -->
+  	<aop:config proxy-target-class="true"></aop:config>
+	
+	
+	<!--&lt;!&ndash; 基础服务 &ndash;&gt;-->
+	<!--<import resource="appContext/base/applicationContext-base-bean.xml"/>-->
+	<!--<import resource="appContext/base/applicationContext-base-service.xml"/>-->
+	<!--<import resource="appContext/base/applicationContext-base-action.xml"/>-->
+	<!---->
+	<!---->
+	<!--&lt;!&ndash; 权限管理 &ndash;&gt;-->
+	<!--<import resource="appContext/right/applicationContext-right-bean.xml"/>-->
+	<!--<import resource="appContext/right/applicationContext-right-service.xml"/>-->
+	<!--<import resource="appContext/right/applicationContext-right-action.xml"/>-->
+	
+</beans>

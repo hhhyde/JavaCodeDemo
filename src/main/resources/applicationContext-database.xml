@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- 基础数据库 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		
+		<property name="url" value="jdbc:oracle:thin:@192.168.1.254:1521:orcl" />
+		<property name="username" value="checkregulat" />
+		<property name="password" value="checkregulat" />
+		
+		<property name="initialSize" value="15" />
+		<property name="maxActive" value="30" />
+		<property name="maxIdle" value="10" />
+		<property name="maxWait" value="30000" />
+		<property name="validationQuery" value="select null from dual" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="defaultAutoCommit" value="true" />
+	</bean>
+
+</beans>
