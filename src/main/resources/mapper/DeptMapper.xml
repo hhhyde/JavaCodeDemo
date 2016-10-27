@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.webmvc.inter.DeptMapper">
+  <resultMap id="BaseResultMap" type="com.example.webmvc.model.Dept">
+    <id column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTTYPE" jdbcType="DECIMAL" property="depttype" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="UPCODE" jdbcType="VARCHAR" property="upcode" />
+    <result column="DEPTDESC" jdbcType="VARCHAR" property="deptdesc" />
+    <result column="LINKADD" jdbcType="VARCHAR" property="linkadd" />
+    <result column="LINKTEL" jdbcType="VARCHAR" property="linktel" />
+    <result column="LINKMAIL" jdbcType="VARCHAR" property="linkmail" />
+    <result column="LINKWEB" jdbcType="VARCHAR" property="linkweb" />
+    <result column="F1" jdbcType="VARCHAR" property="f1" />
+    <result column="F2" jdbcType="VARCHAR" property="f2" />
+    <result column="F3" jdbcType="VARCHAR" property="f3" />
+    <result column="F4" jdbcType="VARCHAR" property="f4" />
+    <result column="F5" jdbcType="VARCHAR" property="f5" />
+    <result column="DEPTAREA" jdbcType="VARCHAR" property="deptarea" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DEPTCODE, DEPTTYPE, DEPTNAME, UPCODE, DEPTDESC, LINKADD, LINKTEL, LINKMAIL, LINKWEB, 
+    F1, F2, F3, F4, F5, DEPTAREA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CHECKREGULAT.DEPT
+    where DEPTCODE = #{deptcode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CHECKREGULAT.DEPT
+    where DEPTCODE = #{deptcode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.webmvc.model.Dept">
+    insert into CHECKREGULAT.DEPT (DEPTCODE, DEPTTYPE, DEPTNAME, 
+      UPCODE, DEPTDESC, LINKADD, 
+      LINKTEL, LINKMAIL, LINKWEB, 
+      F1, F2, F3, F4, 
+      F5, DEPTAREA)
+    values (#{deptcode,jdbcType=VARCHAR}, #{depttype,jdbcType=DECIMAL}, #{deptname,jdbcType=VARCHAR}, 
+      #{upcode,jdbcType=VARCHAR}, #{deptdesc,jdbcType=VARCHAR}, #{linkadd,jdbcType=VARCHAR}, 
+      #{linktel,jdbcType=VARCHAR}, #{linkmail,jdbcType=VARCHAR}, #{linkweb,jdbcType=VARCHAR}, 
+      #{f1,jdbcType=VARCHAR}, #{f2,jdbcType=VARCHAR}, #{f3,jdbcType=VARCHAR}, #{f4,jdbcType=VARCHAR}, 
+      #{f5,jdbcType=VARCHAR}, #{deptarea,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.webmvc.model.Dept">
+    insert into CHECKREGULAT.DEPT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="depttype != null">
+        DEPTTYPE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="upcode != null">
+        UPCODE,
+      </if>
+      <if test="deptdesc != null">
+        DEPTDESC,
+      </if>
+      <if test="linkadd != null">
+        LINKADD,
+      </if>
+      <if test="linktel != null">
+        LINKTEL,
+      </if>
+      <if test="linkmail != null">
+        LINKMAIL,
+      </if>
+      <if test="linkweb != null">
+        LINKWEB,
+      </if>
+      <if test="f1 != null">
+        F1,
+      </if>
+      <if test="f2 != null">
+        F2,
+      </if>
+      <if test="f3 != null">
+        F3,
+      </if>
+      <if test="f4 != null">
+        F4,
+      </if>
+      <if test="f5 != null">
+        F5,
+      </if>
+      <if test="deptarea != null">
+        DEPTAREA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="depttype != null">
+        #{depttype,jdbcType=DECIMAL},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="upcode != null">
+        #{upcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptdesc != null">
+        #{deptdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="linkadd != null">
+        #{linkadd,jdbcType=VARCHAR},
+      </if>
+      <if test="linktel != null">
+        #{linktel,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmail != null">
+        #{linkmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkweb != null">
+        #{linkweb,jdbcType=VARCHAR},
+      </if>
+      <if test="f1 != null">
+        #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null">
+        #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null">
+        #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="deptarea != null">
+        #{deptarea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.webmvc.model.Dept">
+    update CHECKREGULAT.DEPT
+    <set>
+      <if test="depttype != null">
+        DEPTTYPE = #{depttype,jdbcType=DECIMAL},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="upcode != null">
+        UPCODE = #{upcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptdesc != null">
+        DEPTDESC = #{deptdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="linkadd != null">
+        LINKADD = #{linkadd,jdbcType=VARCHAR},
+      </if>
+      <if test="linktel != null">
+        LINKTEL = #{linktel,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmail != null">
+        LINKMAIL = #{linkmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkweb != null">
+        LINKWEB = #{linkweb,jdbcType=VARCHAR},
+      </if>
+      <if test="f1 != null">
+        F1 = #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        F2 = #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        F3 = #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null">
+        F4 = #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null">
+        F5 = #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="deptarea != null">
+        DEPTAREA = #{deptarea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPTCODE = #{deptcode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.webmvc.model.Dept">
+    update CHECKREGULAT.DEPT
+    set DEPTTYPE = #{depttype,jdbcType=DECIMAL},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      UPCODE = #{upcode,jdbcType=VARCHAR},
+      DEPTDESC = #{deptdesc,jdbcType=VARCHAR},
+      LINKADD = #{linkadd,jdbcType=VARCHAR},
+      LINKTEL = #{linktel,jdbcType=VARCHAR},
+      LINKMAIL = #{linkmail,jdbcType=VARCHAR},
+      LINKWEB = #{linkweb,jdbcType=VARCHAR},
+      F1 = #{f1,jdbcType=VARCHAR},
+      F2 = #{f2,jdbcType=VARCHAR},
+      F3 = #{f3,jdbcType=VARCHAR},
+      F4 = #{f4,jdbcType=VARCHAR},
+      F5 = #{f5,jdbcType=VARCHAR},
+      DEPTAREA = #{deptarea,jdbcType=VARCHAR}
+    where DEPTCODE = #{deptcode,jdbcType=VARCHAR}
+  </update>
+</mapper>

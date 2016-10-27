@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.webmvc.inter.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.example.webmvc.model.Role">
+    <id column="ROLEID" jdbcType="DECIMAL" property="roleid" />
+    <result column="ROLENAME" jdbcType="VARCHAR" property="rolename" />
+    <result column="ROLETYPE" jdbcType="VARCHAR" property="roletype" />
+    <result column="ROLEDESC" jdbcType="VARCHAR" property="roledesc" />
+    <result column="F1" jdbcType="VARCHAR" property="f1" />
+    <result column="F2" jdbcType="VARCHAR" property="f2" />
+    <result column="LEVEL_ID" jdbcType="VARCHAR" property="levelId" />
+    <result column="F3" jdbcType="VARCHAR" property="f3" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ROLEID, ROLENAME, ROLETYPE, ROLEDESC, F1, F2, LEVEL_ID, F3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CHECKREGULAT.ROLE
+    where ROLEID = #{roleid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from CHECKREGULAT.ROLE
+    where ROLEID = #{roleid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.example.webmvc.model.Role">
+    insert into CHECKREGULAT.ROLE (ROLEID, ROLENAME, ROLETYPE, 
+      ROLEDESC, F1, F2, LEVEL_ID, 
+      F3)
+    values (#{roleid,jdbcType=DECIMAL}, #{rolename,jdbcType=VARCHAR}, #{roletype,jdbcType=VARCHAR}, 
+      #{roledesc,jdbcType=VARCHAR}, #{f1,jdbcType=VARCHAR}, #{f2,jdbcType=VARCHAR}, #{levelId,jdbcType=VARCHAR}, 
+      #{f3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.webmvc.model.Role">
+    insert into CHECKREGULAT.ROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+      <if test="rolename != null">
+        ROLENAME,
+      </if>
+      <if test="roletype != null">
+        ROLETYPE,
+      </if>
+      <if test="roledesc != null">
+        ROLEDESC,
+      </if>
+      <if test="f1 != null">
+        F1,
+      </if>
+      <if test="f2 != null">
+        F2,
+      </if>
+      <if test="levelId != null">
+        LEVEL_ID,
+      </if>
+      <if test="f3 != null">
+        F3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleid != null">
+        #{roleid,jdbcType=DECIMAL},
+      </if>
+      <if test="rolename != null">
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null">
+        #{roletype,jdbcType=VARCHAR},
+      </if>
+      <if test="roledesc != null">
+        #{roledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="f1 != null">
+        #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null">
+        #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        #{f3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.webmvc.model.Role">
+    update CHECKREGULAT.ROLE
+    <set>
+      <if test="rolename != null">
+        ROLENAME = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="roletype != null">
+        ROLETYPE = #{roletype,jdbcType=VARCHAR},
+      </if>
+      <if test="roledesc != null">
+        ROLEDESC = #{roledesc,jdbcType=VARCHAR},
+      </if>
+      <if test="f1 != null">
+        F1 = #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null">
+        F2 = #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="levelId != null">
+        LEVEL_ID = #{levelId,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null">
+        F3 = #{f3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLEID = #{roleid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.webmvc.model.Role">
+    update CHECKREGULAT.ROLE
+    set ROLENAME = #{rolename,jdbcType=VARCHAR},
+      ROLETYPE = #{roletype,jdbcType=VARCHAR},
+      ROLEDESC = #{roledesc,jdbcType=VARCHAR},
+      F1 = #{f1,jdbcType=VARCHAR},
+      F2 = #{f2,jdbcType=VARCHAR},
+      LEVEL_ID = #{levelId,jdbcType=VARCHAR},
+      F3 = #{f3,jdbcType=VARCHAR}
+    where ROLEID = #{roleid,jdbcType=DECIMAL}
+  </update>
+</mapper>
