@@ -7,28 +7,24 @@
            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
-	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-	    <property name="dataSource" ref="dataSource"/>
-	</bean>
-	
-
-	<!--<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">-->
-		<!--<property name="configLocation">-->
-			<!--<value>classpath:sqlMapConfig.xml</value>-->
-		<!--</property>-->
-		<!--<property name="dataSource" ref="dataSource"></property>-->
-	<!--</bean>-->
-
 	<!--  spring整合 mybatis    -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
+		<!--dataSource属性指定要用到的连接池-->
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:/mybatis-configuration.xml"></property>
+		<!-- 所有配置的mapper文件 -->
+		<property name="mapperLocations" value="classpath*:/mapper/*.xml" />
 	</bean>
 
-	<bean id="roleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.example.webmvc.mapper.RoleMapper" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.example.webmvc.inter"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
 	</bean>
-	
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
 	<tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
             <tx:method name="*" propagation="REQUIRED" />
@@ -40,21 +36,6 @@
             expression="execution(* com.example.*.service..*.*(..))  || execution(* com.example.quartz.*.*(..)) " />
         <aop:advisor advice-ref="txAdvice"
             pointcut-ref="interceptorPointCuts" />        
-    </aop:config>      
-  	
-  	<!-- 激活没有接口实现的类，用于底盘动态 -->
-  	<aop:config proxy-target-class="true"></aop:config>
-	
-	
-	<!--&lt;!&ndash; 基础服务 &ndash;&gt;-->
-	<!--<import resource="appContext/base/applicationContext-base-bean.xml"/>-->
-	<!--<import resource="appContext/base/applicationContext-base-service.xml"/>-->
-	<!--<import resource="appContext/base/applicationContext-base-action.xml"/>-->
-	<!---->
-	<!---->
-	<!--&lt;!&ndash; 权限管理 &ndash;&gt;-->
-	<!--<import resource="appContext/right/applicationContext-right-bean.xml"/>-->
-	<!--<import resource="appContext/right/applicationContext-right-service.xml"/>-->
-	<!--<import resource="appContext/right/applicationContext-right-action.xml"/>-->
+    </aop:config>
 	
 </beans>

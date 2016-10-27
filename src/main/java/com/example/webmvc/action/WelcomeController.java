@@ -2,9 +2,9 @@ package com.example.webmvc.action;
 
 import com.example.webmvc.framework.BaseController;
 import com.example.webmvc.framework.FormModel;
-import com.example.webmvc.mapper.RoleMapper;
+import com.example.webmvc.inter.RoleMapper;
 import com.example.webmvc.model.Role;
-import com.example.webmvc.model.User;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Scope("prototype")
 public class WelcomeController extends BaseController {
 
-	@Autowired()
+	@Autowired
 	private RoleMapper roleMapper;
+
+	@Autowired()
+	private SqlSessionFactory sqlSessionFactory;
 
 	@RequestMapping("")
 	public String welcome() {
@@ -58,16 +61,17 @@ public class WelcomeController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping("form")
-	public String form(@FormModel("user") User user) {
-		return user.toString();
+	public String form(@FormModel("role") Role role) {
+		return role.toString();
 	}
 
 	@ResponseBody
 	@RequestMapping("testDB")
 	public String testDB(){
-		Role role = roleMapper.getRole("75");
+		Role role = roleMapper.selectByPrimaryKey(new Long(75));
 		return "200";
 	}
+
 
 }
 

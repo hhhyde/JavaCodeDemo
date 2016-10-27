@@ -11,7 +11,7 @@ public class RedisDemo {
 		Properties prop = new Properties();
 		//maven项目中resources目录下就是classpath下。
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-		InputStream is = classloader.getResourceAsStream("secure.properties");
+		InputStream is = classloader.getResourceAsStream("secret.properties");
 		prop.load(is);
 
 		Jedis jedis = new Jedis(prop.getProperty("redis_host"), 6380);
