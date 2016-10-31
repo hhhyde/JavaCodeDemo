@@ -74,6 +74,7 @@ public class IODemo {
 	}
 
 	public static void main(String[] args) {
+
 		IODemo in = new IODemo();
 		String currentPath = System.getProperty("user.dir");
 		String filePath = currentPath + "\\temp";

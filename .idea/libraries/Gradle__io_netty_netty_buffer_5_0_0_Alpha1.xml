@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.netty:netty-buffer:5.0.0.Alpha1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/5.0.0.Alpha1/27e91dd2b5d13791b056fb1ce489476700beff8c/netty-buffer-5.0.0.Alpha1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/5.0.0.Alpha1/eefda21cade64d57f13f3d137a000e6a7c5fa46a/netty-buffer-5.0.0.Alpha1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

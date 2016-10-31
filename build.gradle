@@ -36,4 +36,25 @@ dependencies {
             'org.mybatis:mybatis-spring:1.+',
             'org.mybatis:mybatis:3.4.0',
             'org.mybatis.generator:mybatis-generator-core:1.3.5'
+
+    // netty 依赖包
+    compile 'io.netty:netty-all:5.0.0.Alpha1',
+            'io.netty:netty-example:5.0.0.Alpha1',
+            'com.google.protobuf:protobuf-java:2.5.0',
+            'org.jboss.marshalling:jboss-marshalling-serial:1.4.10.Final',
+            'org.apache.bcel:bcel:5.2',
+            'stax:stax-api:1.0.1',
+            'org.codehaus.woodstox:wstx-asl:3.2.9',
+            'org.jibx:jibx-bind:1.2.5',
+            'org.jibx:jibx-run:1.2.5',
+            'org.jibx:jibx-extras:1.2.5',
+            'org.jibx:jibx-schema:1.2.5',
+            'org.jibx:jibx-tools:1.2.5',
+            'log4j:log4j:1.2.17',
+            'xpp3:xpp3:1.1.4c',
+            'org.ogce:xpp3:1.1.6',
+            'org.apache.ant:ant:1.9.4',
+            'joda-time:joda-time:2.6',
+            'com.thoughtworks.qdox:qdox:1.12.1',
+            'commons-logging:commons-logging:1.1.1'
 }

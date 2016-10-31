@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jibx.config.3rdparty.org.eclipse:org.eclipse.equinox.common:3.6.0.v20110523">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jibx.config.3rdparty.org.eclipse/org.eclipse.equinox.common/3.6.0.v20110523/ab81fd273d933406a855d23a3c341b668b2f9cef/org.eclipse.equinox.common-3.6.0.v20110523.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jibx.config.3rdparty.org.eclipse/org.eclipse.equinox.common/3.6.0.v20110523/df3a1d4c7651e860facf19c710da531b6eed55de/org.eclipse.equinox.common-3.6.0.v20110523-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

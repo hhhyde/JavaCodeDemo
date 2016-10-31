@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jibx.config.3rdparty.org.eclipse:org.eclipse.jdt.core:3.7.0.v_B61">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jibx.config.3rdparty.org.eclipse/org.eclipse.jdt.core/3.7.0.v_B61/9b1e66ee768b4e422cc3bb2d1c84320d7d116575/org.eclipse.jdt.core-3.7.0.v_B61.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jibx.config.3rdparty.org.eclipse/org.eclipse.jdt.core/3.7.0.v_B61/fe94d771821d32c97e950b151bf5ed9d4e8d6edd/org.eclipse.jdt.core-3.7.0.v_B61-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jibx.config.3rdparty.org.eclipse:org.eclipse.text:3.5.100.v20110505-0800">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jibx.config.3rdparty.org.eclipse/org.eclipse.text/3.5.100.v20110505-0800/3dc1f98d887201bb243136f81b2c641c1ae442e9/org.eclipse.text-3.5.100.v20110505-0800.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jibx.config.3rdparty.org.eclipse/org.eclipse.text/3.5.100.v20110505-0800/62fbbfce8cfc59da787cf4a6c728baee0820d89a/org.eclipse.text-3.5.100.v20110505-0800-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
