@@ -16,6 +16,8 @@
 package demos.ioDemo.netty;
 
 import io.netty.bootstrap.ServerBootstrap;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -23,7 +25,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 
 /**
@@ -57,7 +59,7 @@ public class TimeServer {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup)
 					.channel(NioServerSocketChannel.class)
-					.option(ChannelOption.SO_BACKLOG, 1024)
+					.option(ChannelOption.SO_BACKLOG, 100)
 					.childHandler(new ChildChannelHandler());
 			// 绑定端口，同步等待成功
 			ChannelFuture f = b.bind(port).sync();
@@ -74,7 +76,8 @@ public class TimeServer {
 	private class ChildChannelHandler extends ChannelInitializer<SocketChannel> {
 		@Override
 		protected void initChannel(SocketChannel arg0) throws Exception {
-			arg0.pipeline().addLast(new LineBasedFrameDecoder(1024));
+			ByteBuf delimiter= Unpooled.copiedBuffer("$_".getBytes());
+			arg0.pipeline().addLast(new DelimiterBasedFrameDecoder(1024,delimiter));
 			arg0.pipeline().addLast(new StringDecoder());
 			arg0.pipeline().addLast(new TimeServerHandler());
 		}

@@ -33,16 +33,15 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
 		String body = (String) msg;
-		System.out.println("The time server receive order :" + body + ";the counter is:" + ++counter);
-		String currentTime = "QUERY TIME ORDER".equalsIgnoreCase(body) ? new java.util.Date(
-				System.currentTimeMillis()).toString() : "BAD ORDER";
-		currentTime += System.getProperty("line.separator");
-		ByteBuf resp = Unpooled.copiedBuffer(currentTime.getBytes());
-		ctx.writeAndFlush(resp);
+		System.out.println("This is "+ ++counter +"time receive client:["+body+"]");
+		body+="$_";
+		ByteBuf echo =Unpooled.copiedBuffer(body.getBytes());
+		ctx.writeAndFlush(echo);
 	}
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+		cause.printStackTrace();
 		ctx.close();
 	}
 }
