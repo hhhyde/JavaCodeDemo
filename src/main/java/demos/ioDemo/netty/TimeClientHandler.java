@@ -40,8 +40,8 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) {
 		ByteBuf message = null;
-		for (int i = 0; i < 100; i++) {
-			ctx.writeAndFlush(Unpooled.copiedBuffer(req.getBytes()));
+		for (int i = 1; i < 100; i++) {
+			ctx.writeAndFlush(Unpooled.copiedBuffer((i+"").getBytes()));
 		}
 	}
 
