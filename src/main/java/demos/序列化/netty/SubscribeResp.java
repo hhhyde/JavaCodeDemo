@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.phei.netty.codec.pojo;
+package demos.序列化.netty;
 
 import java.io.Serializable;
 

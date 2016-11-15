@@ -15,8 +15,8 @@
  */
 package com.phei.netty.codec.marshalling;
 
-import com.phei.netty.codec.pojo.SubscribeReq;
-import com.phei.netty.codec.pojo.SubscribeResp;
+import demos.序列化.netty.SubscribeReq;
+import demos.序列化.netty.SubscribeResp;
 import io.netty.channel.ChannelHandler.Sharable;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;

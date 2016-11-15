@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.phei.netty.codec.serializable;
+package demos.序列化;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.ByteBuffer;
 
 /**
  * @author Administrator
  * @date 2014年2月23日
  * @version 1.0
  */
-public class TestUserInfo {
+public class PerformTestUserInfo {
 
     /**
      * @param args
@@ -33,17 +34,33 @@ public class TestUserInfo {
     public static void main(String[] args) throws IOException {
 	UserInfo info = new UserInfo();
 	info.buildUserID(100).buildUserName("Welcome to Netty");
-	ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	ObjectOutputStream os = new ObjectOutputStream(bos);
-	os.writeObject(info);
-	os.flush();
-	os.close();
-	byte[] b = bos.toByteArray();
-	System.out.println("The jdk serializable length is : " + b.length);
-	bos.close();
+	int loop = 1000000;
+	ByteArrayOutputStream bos = null;
+	ObjectOutputStream os = null;
+	long startTime = System.currentTimeMillis();
+	for (int i = 0; i < loop; i++) {
+	    bos = new ByteArrayOutputStream();
+	    os = new ObjectOutputStream(bos);
+	    os.writeObject(info);
+	    os.flush();
+	    os.close();
+	    byte[] b = bos.toByteArray();
+	    bos.close();
+	}
+	long endTime = System.currentTimeMillis();
+	System.out.println("The jdk serializable cost time is  : "
+		+ (endTime - startTime) + " ms");
+
 	System.out.println("-------------------------------------");
-	System.out.println("The byte array serializable length is : "
-		+ info.codeC().length);
+
+	ByteBuffer buffer = ByteBuffer.allocate(1024);
+	startTime = System.currentTimeMillis();
+	for (int i = 0; i < loop; i++) {
+	    byte[] b = info.codeC(buffer);
+	}
+	endTime = System.currentTimeMillis();
+	System.out.println("The byte array serializable cost time is : "
+		+ (endTime - startTime) + " ms");
 
     }
 
