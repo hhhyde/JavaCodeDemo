@@ -35,7 +35,8 @@ dependencies {
             'com.google.collections:google-collections:1.0',
             'org.mybatis:mybatis-spring:1.+',
             'org.mybatis:mybatis:3.4.0',
-            'org.mybatis.generator:mybatis-generator-core:1.3.5'
+            'org.mybatis.generator:mybatis-generator-core:1.3.5',
+            'com.squareup.okhttp3:okhttp:+'
 
     // netty 依赖包
     compile 'io.netty:netty-all:5.0.0.Alpha1',

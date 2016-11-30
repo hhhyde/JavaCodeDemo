@@ -1,4 +1,4 @@
-package demos.httpclientdemo;
+package demos.http.httpclientdemo;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
