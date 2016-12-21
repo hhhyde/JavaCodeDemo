@@ -73,17 +73,29 @@ public class IODemo {
 		return result.toString();
 	}
 
-	public static void main(String[] args) {
-
-		IODemo in = new IODemo();
-		String currentPath = System.getProperty("user.dir");
-		String filePath = currentPath + "\\temp";
-		try {
-			// io.simpleWrite("nimei3j", filePath);
-			System.out.println(in.readOffset(filePath, 0));
-		} catch (IOException e) {
-			e.printStackTrace();
+	/**
+	 * 字节流转字符流
+	 */
+	public void byte2char() throws UnsupportedEncodingException {
+		String str="你好";
+		// 编码和解码要一致
+		Reader reader = new InputStreamReader(new ByteArrayInputStream(str.getBytes("UTF-8")),"UTF-8");
+		char[] chars = new char[2];
+		while (true){
+			try {
+				int i = reader.read(chars);
+				if (i==-1){
+					break;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		// System.out.println((int)'ï');
+		System.out.println(new String(chars));
+	}
+
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		IODemo demo = new IODemo();
+		demo.byte2char();
 	}
 }

@@ -32,7 +32,6 @@ public class Demo {
     }
 
     public static void main(String[] args) throws IOException {
-        Demo demo = new Demo();
-        demo.simple();
+        System.out.println(10.00-9.10);
     }
 }
