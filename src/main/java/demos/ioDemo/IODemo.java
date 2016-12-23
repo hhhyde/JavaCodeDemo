@@ -1,6 +1,8 @@
 package demos.ioDemo;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class IODemo {
 	public void simpleWrite(String content, String filePath) throws IOException {
@@ -94,8 +96,37 @@ public class IODemo {
 		System.out.println(new String(chars));
 	}
 
-	public static void main(String[] args) throws UnsupportedEncodingException {
+	/**
+	 * 200M的文件要0.9秒
+	 * @throws IOException
+	 */
+	public void 读大文件测试BIO() throws IOException {
+		long start = System.nanoTime();
+		InputStream in = new FileInputStream("C:\\Users\\kke\\Desktop\\veh_client.log");
+		byte[] bytes=new byte[1024];
+		while (true){
+			int l = in.read(bytes);
+			if (l==-1){
+				break;
+			}
+		}
+		long end = System.nanoTime();
+		System.out.println(end-start);
+	}
+
+	/**
+	 * 200M文件要0.4秒
+	 * @throws IOException
+	 */
+	public void 读大文件测试NIO() throws IOException {
+		long start = System.nanoTime();
+		Files.readAllBytes(Paths.get("C:\\Users\\kke\\Desktop\\veh_client.log"));
+		long end = System.nanoTime();
+		System.out.println(end-start);
+	}
+
+	public static void main(String[] args) throws IOException {
 		IODemo demo = new IODemo();
-		demo.byte2char();
+		demo.读大文件测试NIO();
 	}
 }
