@@ -7,72 +7,102 @@ import com.example.webmvc.model.Role;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.security.auth.kerberos.KerberosTicket;
 
 @Controller
 @RequestMapping("welcome")
 @Scope("prototype")
 public class WelcomeController extends BaseController {
 
-	@Autowired
-	private RoleMapper roleMapper;
+    @Autowired
+    private RoleMapper roleMapper;
 
-	@Autowired()
-	private SqlSessionFactory sqlSessionFactory;
+    @Autowired()
+    private SqlSessionFactory sqlSessionFactory;
 
-	@RequestMapping("")
-	public String welcome() {
-		return "index";
-	}
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
-	@ResponseBody
-	@RequestMapping("hello")
-	public String returnStr() {
-		return "hello world!";
-	}
+    @RequestMapping("")
+    public String welcome() {
+        return "index";
+    }
 
-
-	/**
-	 * 重定向到一个action
-	 */
-	@RequestMapping(value = "/redirect", method = RequestMethod.GET)
-	public String redirect() {
-		return "redirect:/roleRes!getRoleRes.action";
-	}
-
-	/**
-	 * 转发到一个action
-	 */
-	@RequestMapping(value = "/forward", method = RequestMethod.GET)
-	public String forward() {
-		return "forward:/roleRes!getRoleRes.action";
-	}
+    @ResponseBody
+    @RequestMapping("hello")
+    public String returnStr() {
+        return "hello world!";
+    }
 
 
-	@ResponseBody
-	@RequestMapping(value = "/404", method = RequestMethod.GET)
-	public String request() {
-		response.setStatus(404);
-		return "12";
-	}
+    /**
+     * 重定向到一个action
+     */
+    @RequestMapping(value = "/redirect", method = RequestMethod.GET)
+    public String redirect() {
+        return "redirect:/roleRes!getRoleRes.action";
+    }
 
-	@ResponseBody
-	@RequestMapping("form")
-	public String form(@FormModel("role") Role role) {
-		return role.toString();
-	}
-
-	@ResponseBody
-	@RequestMapping("testDB")
-	public String testDB(){
-		Role role = roleMapper.selectByPrimaryKey(new Long(75));
-		return "200";
-	}
+    /**
+     * 转发到一个action
+     */
+    @RequestMapping(value = "/forward", method = RequestMethod.GET)
+    public String forward() {
+        return "forward:/roleRes!getRoleRes.action";
+    }
 
 
+    @ResponseBody
+    @RequestMapping(value = "/404", method = RequestMethod.GET)
+    public String request() {
+        response.setStatus(404);
+        return "12";
+    }
+
+    @ResponseBody
+    @RequestMapping("form")
+    public String form(@FormModel("role") Role role) {
+        return role.toString();
+    }
+
+    @ResponseBody
+    @RequestMapping("testDB")
+    public String testDB() {
+        Role role = roleMapper.selectByPrimaryKey(new Long(75));
+        return "200";
+    }
+
+    @ResponseBody
+    @RequestMapping("redis/{key}")
+    public String retrieve(@PathVariable String key) {
+        String value = redisTemplate.execute(new RedisCallback<String>() {
+            @Override
+            public String doInRedis(RedisConnection connection) throws DataAccessException {
+                byte[] value = connection.get(key.getBytes());
+                return new String(value);
+            }
+        });
+        return value;
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST,value = "redis")
+    public String redisSet(@RequestParam("key") String key,@RequestParam("value") String value){
+        return redisTemplate.execute(new RedisCallback<String>() {
+            @Override
+            public String doInRedis(RedisConnection connection) throws DataAccessException {
+                connection.set(key.getBytes(),value.getBytes());
+                return "200";
+            }
+        });
+    }
 }
 
 
