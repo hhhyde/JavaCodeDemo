@@ -79,30 +79,4 @@ public class WelcomeController extends BaseController {
         return "200";
     }
 
-    @ResponseBody
-    @RequestMapping("redis/{key}")
-    public String retrieve(@PathVariable String key) {
-        String value = redisTemplate.execute(new RedisCallback<String>() {
-            @Override
-            public String doInRedis(RedisConnection connection) throws DataAccessException {
-                byte[] value = connection.get(key.getBytes());
-                return new String(value);
-            }
-        });
-        return value;
-    }
-
-    @ResponseBody
-    @RequestMapping(method = RequestMethod.POST,value = "redis")
-    public String redisSet(@RequestParam("key") String key,@RequestParam("value") String value){
-        return redisTemplate.execute(new RedisCallback<String>() {
-            @Override
-            public String doInRedis(RedisConnection connection) throws DataAccessException {
-                connection.set(key.getBytes(),value.getBytes());
-                return "200";
-            }
-        });
-    }
 }
-
-
