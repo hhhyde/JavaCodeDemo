@@ -7,14 +7,15 @@ import com.example.webmvc.model.Role;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.security.auth.kerberos.KerberosTicket;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("welcome")
@@ -77,6 +78,16 @@ public class WelcomeController extends BaseController {
     public String testDB() {
         Role role = roleMapper.selectByPrimaryKey(new Long(75));
         return "200";
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.POST, value = "upload")
+    public String handleFileUpload(@RequestParam("file") MultipartFile file) throws InterruptedException, IOException {
+        response.setHeader("Content-disposition", "attachment; filename="
+                + new String(file.getOriginalFilename().getBytes("utf-8"), "ISO8859-1"));
+        String ss = file.getOriginalFilename();
+        response.getOutputStream().write((file.getBytes()));
+        return ss;
     }
 
 }
