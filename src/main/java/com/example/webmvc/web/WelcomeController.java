@@ -1,4 +1,4 @@
-package com.example.webmvc.action;
+package com.example.webmvc.web;
 
 import com.example.webmvc.framework.BaseController;
 import com.example.webmvc.framework.FormModel;
@@ -48,7 +48,7 @@ public class WelcomeController extends BaseController {
      */
     @RequestMapping(value = "/redirect", method = RequestMethod.GET)
     public String redirect() {
-        return "redirect:/roleRes!getRoleRes.action";
+        return "redirect:/roleRes!getRoleRes.web";
     }
 
     /**
@@ -56,7 +56,7 @@ public class WelcomeController extends BaseController {
      */
     @RequestMapping(value = "/forward", method = RequestMethod.GET)
     public String forward() {
-        return "forward:/roleRes!getRoleRes.action";
+        return "forward:/roleRes!getRoleRes.web";
     }
 
 

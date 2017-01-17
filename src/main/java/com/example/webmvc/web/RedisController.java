@@ -1,4 +1,4 @@
-package com.example.webmvc.action;
+package com.example.webmvc.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
