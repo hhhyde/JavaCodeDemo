@@ -4,7 +4,14 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <context:component-scan base-package="com.example.webmvc.web"/>
 
@@ -31,7 +38,7 @@
     <!-- 静态资源默认 servlet 配置
     1、加入对静态资源的处理: js,css,gif,png
     2、允许使用 "/" 做整体映射
- -->
+    -->
     <mvc:default-servlet-handler/>
 
     <!-- 配置 JSP　显示 ViewResolver-->
@@ -48,4 +55,7 @@
             <value>100000000</value>
         </property>
     </bean>
+
+    <!-- 全局异常捕捉 -->
+    <bean class="com.example.webmvc.exception.GlobalExceptionResolver"/>
 </beans>

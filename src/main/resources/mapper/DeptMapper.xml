@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.webmvc.inter.DeptMapper">
-  <resultMap id="BaseResultMap" type="com.example.webmvc.model.Dept">
+  <resultMap id="BaseResultMap" type="com.example.webmvc.entity.Dept">
     <id column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
     <result column="DEPTTYPE" jdbcType="DECIMAL" property="depttype" />
     <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
@@ -32,7 +32,7 @@
     delete from CHECKREGULAT.DEPT
     where DEPTCODE = #{deptcode,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.webmvc.model.Dept">
+  <insert id="insert" parameterType="com.example.webmvc.entity.Dept">
     insert into CHECKREGULAT.DEPT (DEPTCODE, DEPTTYPE, DEPTNAME, 
       UPCODE, DEPTDESC, LINKADD, 
       LINKTEL, LINKMAIL, LINKWEB, 
@@ -44,7 +44,7 @@
       #{f1,jdbcType=VARCHAR}, #{f2,jdbcType=VARCHAR}, #{f3,jdbcType=VARCHAR}, #{f4,jdbcType=VARCHAR}, 
       #{f5,jdbcType=VARCHAR}, #{deptarea,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.webmvc.model.Dept">
+  <insert id="insertSelective" parameterType="com.example.webmvc.entity.Dept">
     insert into CHECKREGULAT.DEPT
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="deptcode != null">
@@ -141,7 +141,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.webmvc.model.Dept">
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.webmvc.entity.Dept">
     update CHECKREGULAT.DEPT
     <set>
       <if test="depttype != null">
@@ -189,7 +189,7 @@
     </set>
     where DEPTCODE = #{deptcode,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.webmvc.model.Dept">
+  <update id="updateByPrimaryKey" parameterType="com.example.webmvc.entity.Dept">
     update CHECKREGULAT.DEPT
     set DEPTTYPE = #{depttype,jdbcType=DECIMAL},
       DEPTNAME = #{deptname,jdbcType=VARCHAR},

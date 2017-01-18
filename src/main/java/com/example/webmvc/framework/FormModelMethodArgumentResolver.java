@@ -63,8 +63,8 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
     }
 
     /**
-     * Resolve the argument from the model or if not found instantiate it with
-     * its default if it is available. The model attribute is then populated
+     * Resolve the argument from the entity or if not found instantiate it with
+     * its default if it is available. The entity attribute is then populated
      * with request values via data binding and optionally validated
      * if {@code @java.validation.Valid} is present on the argument.
      *
@@ -103,14 +103,14 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
 
 
     /**
-     * Extension point to create the model attribute if not found in the model.
+     * Extension point to create the entity attribute if not found in the entity.
      * The default implementation uses the default constructor.
      *
      * @param attributeName the name of the attribute, never {@code null}
      * @param parameter     the method parameter
      * @param binderFactory for creating WebDataBinder instance
      * @param request       the current request
-     * @return the created model attribute, never {@code null}
+     * @return the created entity attribute, never {@code null}
      */
     protected Object createAttribute(String attributeName, MethodParameter parameter,
                                      WebDataBinderFactory binderFactory, NativeWebRequest request) throws Exception {
@@ -141,11 +141,11 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
 
     /**
      * Obtain a value from the request that may be used to instantiate the
-     * model attribute through type conversion from String to the target type.
+     * entity attribute through type conversion from String to the target type.
      * <p>The default implementation looks for the attribute name to match
      * a URI variable first and then a request parameter.
      *
-     * @param attributeName the model attribute name
+     * @param attributeName the entity attribute name
      * @param request       the current request
      * @return the request value to try to convert or {@code null}
      */
@@ -161,17 +161,17 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
     }
 
     /**
-     * Create a model attribute from a String request value (e.g. URI template
+     * Create a entity attribute from a String request value (e.g. URI template
      * variable, request parameter) using type conversion.
      * <p>The default implementation converts only if there a registered
      * {@link org.springframework.core.convert.converter.Converter} that can perform the conversion.
      *
-     * @param sourceValue   the source value to create the model attribute from
+     * @param sourceValue   the source value to create the entity attribute from
      * @param attributeName the name of the attribute, never {@code null}
      * @param parameter     the method parameter
      * @param binderFactory for creating WebDataBinder instance
      * @param request       the current request
-     * @return the created model attribute, or {@code null}
+     * @return the created entity attribute, or {@code null}
      * @throws Exception
      */
     protected Object createAttributeFromRequestValue(String sourceValue,
@@ -350,7 +350,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
                     }
                 }
             }
-        } else {//bind model
+        } else {//bind entity
             ServletRequestDataBinder servletBinder = (ServletRequestDataBinder) binder;
             for (Object key : servletRequest.getParameterMap().keySet()) {
             	String prefixName = getPrefixName((String) key);
@@ -503,7 +503,7 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
     }
 
     /**
-     * Validate the model attribute if applicable.
+     * Validate the entity attribute if applicable.
      * <p>The default implementation checks for {@code @javax.validation.Valid}.
      *
      * @param binder    the DataBinder to be used
