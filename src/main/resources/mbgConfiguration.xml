@@ -30,7 +30,7 @@
         </javaTypeResolver>
 
         <!-- 数据表对应的model 层  -->
-        <javaModelGenerator targetPackage="main.java.com.example.webmvc.model" targetProject="src">
+        <javaModelGenerator targetPackage="main.java.com.example.webmvc.entity" targetProject="src">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>

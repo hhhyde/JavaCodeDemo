@@ -1,4 +1,4 @@
-package com.example.webmvc.model;
+package com.example.webmvc.entity;
 
 public class Dept {
     private String deptcode;

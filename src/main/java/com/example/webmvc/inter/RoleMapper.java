@@ -1,6 +1,6 @@
 package com.example.webmvc.inter;
 
-import com.example.webmvc.model.Role;
+import com.example.webmvc.entity.Role;
 
 public interface RoleMapper {
     int deleteByPrimaryKey(Long roleid);

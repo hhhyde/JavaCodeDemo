@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+    <!-- 配置整合 mybatis 过程 -->
+
+    <!--1、配置数据库相关参数 -->
+    <context:property-placeholder location="classpath:secret.properties" ignore-unresolvable="true"/>
+
+    <!--2. 数据源 druid -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${oracle.driverClassName}"/>
+        <property name="url" value="${oracle.url}"/>
+        <property name="username" value="${oracle.account}"/>
+        <property name="password" value="${oracle.passward}"/>
+
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${druid.pool.size.init}"/>
+        <property name="minIdle" value="${druid.pool.size.min}"/>
+        <property name="maxActive" value="${druid.pool.size.max}"/>
+
+        <!-- 配置监控统计拦截的 filters，wall 用于防止 sql 注入，stat 用于统计分析 -->
+        <property name="filters" value="wall,stat"/>
+    </bean>
+
+
+    <!--3、配置 SqlSessionFactory 对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 配置 mybatis 全局配置文件: mybatis-config.xml-->
+        <property name="configLocation" value="classpath:/mybatis-configuration.xml"></property>
+        <!-- 扫描 entity 包, 使用别名, 多个用; 隔开 -->
+        <property name="typeAliasesPackage" value="com.example.webmvc.entity"/>
+        <!-- 扫描 sql 配置文件: mapper 需要的 xml 文件 -->
+        <property name="mapperLocations" value="classpath*:/mapper/*.xml"/>
+    </bean>
+
+    <!--4、配置扫描 Dao 接口包, 动态实现 DAO 接口, 注入到 spring 容器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 给出需要扫描的 Dao 接口 -->
+        <property name="basePackage" value="com.example.webmvc.inter"/>
+        <!-- 注入 SqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+</beans>

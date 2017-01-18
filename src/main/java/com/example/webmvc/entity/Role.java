@@ -1,6 +1,8 @@
-package com.example.webmvc.model;
+package com.example.webmvc.entity;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
     private Long roleid;
 
     private String rolename;
