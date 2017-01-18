@@ -1,10 +1,15 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Gradle : JavaCodeDemo-1.0-SNAPSHOT.war (exploded)">
-    <output-path>$PROJECT_DIR$/out/artifacts/JavaCodeDemo/exploded/JavaCodeDemo-1.0-SNAPSHOT.war</output-path>
+    <output-path>$PROJECT_DIR$/build/libs/exploded/JavaCodeDemo-1.0-SNAPSHOT.war</output-path>
     <properties id="gradle-properties">
-      <options external-project-path="$PROJECT_DIR$" />
+      <options external-project-path="$PROJECT_DIR$">
+        <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
+      </options>
     </properties>
     <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/build/libs/exploded/JavaCodeDemo-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
+      </element>
       <element id="javaee-facet-resources" facet="JavaCodeDemo_main/web/Web Gradle : JavaCodeDemo-1.0-SNAPSHOT.war" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -32,11 +37,11 @@
           <element id="library" level="project" name="Gradle: org.springframework:spring-tx:4.3.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-jdbc:4.3.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-test:4.3.3.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-commons:1.12.4.RELEASE" />
           <element id="library" level="project" name="Gradle: com.google.collections:google-collections:1.0" />
           <element id="library" level="project" name="Gradle: org.mybatis:mybatis-spring:1.3.0" />
           <element id="library" level="project" name="Gradle: org.mybatis:mybatis:3.4.0" />
           <element id="library" level="project" name="Gradle: org.mybatis.generator:mybatis-generator-core:1.3.5" />
+          <element id="library" level="project" name="Gradle: com.squareup.okhttp3:okhttp:3.5.0" />
           <element id="library" level="project" name="Gradle: io.netty:netty-all:5.0.0.Alpha1" />
           <element id="library" level="project" name="Gradle: io.netty:netty-example:5.0.0.Alpha1" />
           <element id="library" level="project" name="Gradle: com.google.protobuf:protobuf-java:2.5.0" />
@@ -70,8 +75,7 @@
           <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.3.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.3.3.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.3.3.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.21" />
-          <element id="library" level="project" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.21" />
+          <element id="library" level="project" name="Gradle: com.squareup.okio:okio:1.11.0" />
           <element id="library" level="project" name="Gradle: io.netty:netty-transport:5.0.0.Alpha1" />
           <element id="library" level="project" name="Gradle: io.netty:netty-transport-sctp:5.0.0.Alpha1" />
           <element id="library" level="project" name="Gradle: io.netty:netty-handler:5.0.0.Alpha1" />
@@ -107,8 +111,6 @@
           <element id="library" level="project" name="Gradle: javax.validation:validation-api:1.1.0.Final" />
           <element id="library" level="project" name="Gradle: org.jboss.logging:jboss-logging:3.2.1.Final" />
           <element id="library" level="project" name="Gradle: com.fasterxml:classmate:1.1.0" />
-          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.8.0" />
-          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.8.3" />
           <element id="library" level="project" name="Gradle: io.netty:netty-buffer:5.0.0.Alpha1" />
           <element id="library" level="project" name="Gradle: io.netty:netty-codec:5.0.0.Alpha1" />
           <element id="library" level="project" name="Gradle: com.barchart.udt:barchart-udt-bundle:2.3.0" />
@@ -120,12 +122,16 @@
           <element id="library" level="project" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.21" />
           <element id="library" level="project" name="Gradle: io.netty:netty-common:5.0.0.Alpha1" />
           <element id="library" level="project" name="Gradle: ch.qos.logback:logback-core:1.1.7" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.2/ccde00f7ccc77af5a6d5752e2cb21f6d8998289f/okhttp-3.4.2.jar" />
-          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.8.3" />
+          <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.22" />
+          <element id="library" level="project" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.22" />
+          <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-commons:1.12.6.RELEASE" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.8.0" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-redis/1.7.6.RELEASE/14d58bd49fd231e04251e250ccd676b153497cf4/spring-data-redis-1.7.6.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-keyvalue/1.1.6.RELEASE/7441513a1ab93551789b1118fe17e0b0ce096e79/spring-data-keyvalue-1.1.6.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-oxm/4.2.9.RELEASE/410f90c745acd4ef7dd3996b8d0843a1d3217437/spring-oxm-4.2.9.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context-support/4.2.9.RELEASE/f89ce852445c1f552814044797f8ae818a9125fc/spring-context-support-4.2.9.RELEASE.jar" />
         </element>
-      </element>
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/JavaCodeDemo/exploded/JavaCodeDemo-1.0-SNAPSHOT.war/META-INF/MANIFEST.MF" />
       </element>
     </root>
   </artifact>
