@@ -13,6 +13,19 @@
     <!--1、配置数据库相关参数 -->
     <context:property-placeholder location="classpath:secret.properties" ignore-unresolvable="true"/>
 
+
+    <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+        <!--执行时间超过 10秒 的就是慢SQL记录-->
+        <property name="slowSqlMillis" value="10000"/>
+        <!--将慢SQL打印出来-->
+        <property name="logSlowSql" value="true"/>
+    </bean>
+
+    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+        <property name="statementExecutableSqlLogEnable" value="true" />
+        <property name="resultSetLogEnabled" value="false" />
+    </bean>
+
     <!--2. 数据源 druid -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
@@ -26,8 +39,34 @@
         <property name="minIdle" value="${druid.pool.size.min}"/>
         <property name="maxActive" value="${druid.pool.size.max}"/>
 
-        <!-- 配置监控统计拦截的 filters，wall 用于防止 sql 注入，stat 用于统计分析 -->
-        <property name="filters" value="wall,stat"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000" />
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+
+        <property name="validationQuery" value="select null from dual" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+
+        <!-- 配置监控统计拦截的 filters，wall 用于防止 sql 注入，stat 用于统计分析, log4j支持日志打印, mergeStat合并SQL -->
+        <!-- stat在最后则统计的SQL执行时间包含前面所有的filter执行时间 -->
+        <property name="filters" value="wall,log4j,mergeStat,stat"/>
+        <!--记录慢SQL-->
+        <property name="proxyFilters">
+            <list>
+                <ref bean="stat-filter"/>
+                <ref bean="log-filter"/>
+            </list>
+        </property>
     </bean>
 
 
