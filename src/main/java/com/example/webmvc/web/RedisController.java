@@ -71,4 +71,12 @@ public class RedisController extends BaseController {
         return obj+"";
     }
 
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.DELETE,value = "/delete/{key}")
+    public String delete(@PathVariable String key){
+        cache.deleteCache(key);
+        return "200";
+    }
+
+
 }

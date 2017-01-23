@@ -10,12 +10,15 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class RedisCache {
 
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
+    public final static String CAHCENAME="cache";// 缓存名
+    public final static int CAHCETIME=60;// 默认缓存时间
 
 
     /**
@@ -106,6 +109,31 @@ public class RedisCache {
             return null;
         }
         return ProtoStuffSerializerUtil.deserializeList(result, targetClass);
+    }
+
+    /**
+     * 精确删除cahe
+     * @param key key
+     * @return
+     */
+    public void deleteCache(String key){
+        redisTemplate.delete(key);
+    }
+
+    /**
+     * 模糊删除所有key
+     * @param pattern
+     */
+    public void deleteCacheWithPattern(String pattern){
+        Set<String> keys = redisTemplate.keys(pattern);
+        redisTemplate.delete(keys);
+    }
+
+    /**
+     * 清空所有缓存
+     */
+    public void clearCache() {
+        deleteCacheWithPattern(RedisCache.CAHCENAME+"|*");
     }
 
     public static void main(String[] aa){

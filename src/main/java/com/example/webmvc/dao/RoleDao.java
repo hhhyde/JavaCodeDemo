@@ -1,8 +1,9 @@
-package com.example.webmvc.inter;
+package com.example.webmvc.dao;
 
 import com.example.webmvc.entity.Role;
 
-public interface RoleMapper {
+
+public interface RoleDao {
     int deleteByPrimaryKey(Long roleid);
 
     int insert(Role record);
