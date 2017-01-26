@@ -41,7 +41,7 @@
         </sqlMapGenerator>
 
         <!-- 在ibatis2 中是dao层，但在mybatis3中，其实就是mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="main.java.com.example.webmvc.inter" targetProject="src">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="main.java.com.example.webmvc.dao" targetProject="src">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

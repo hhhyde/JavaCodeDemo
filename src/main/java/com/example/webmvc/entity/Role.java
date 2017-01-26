@@ -3,6 +3,7 @@ package com.example.webmvc.entity;
 import java.io.Serializable;
 
 public class Role implements Serializable {
+
     private Long roleid;
 
     private String rolename;

@@ -1,8 +1,8 @@
-package com.example.webmvc.inter;
+package com.example.webmvc.dao;
 
 import com.example.webmvc.entity.Dept;
 
-public interface DeptMapper {
+public interface DeptDao {
     int deleteByPrimaryKey(String deptcode);
 
     int insert(Dept record);

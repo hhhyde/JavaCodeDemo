@@ -1,9 +1,9 @@
 package com.example.webmvc.web;
 
+import com.example.webmvc.entity.Role;
 import com.example.webmvc.framework.BaseController;
 import com.example.webmvc.framework.FormModel;
-import com.example.webmvc.inter.RoleMapper;
-import com.example.webmvc.entity.Role;
+import com.example.webmvc.service.RoleService;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -23,7 +23,7 @@ import java.io.IOException;
 public class WelcomeController extends BaseController {
 
     @Autowired
-    private RoleMapper roleMapper;
+    private RoleService roleService;
 
     @Autowired()
     private SqlSessionFactory sqlSessionFactory;
@@ -76,7 +76,7 @@ public class WelcomeController extends BaseController {
     @ResponseBody
     @RequestMapping("testDB")
     public String testDB() {
-        Role role = roleMapper.selectByPrimaryKey(new Long(75));
+        Role role = roleService.selectByPrimaryKey(new Long(75));
         return "200";
     }
 
