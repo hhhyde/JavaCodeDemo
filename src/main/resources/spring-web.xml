@@ -24,7 +24,7 @@
                         <value>text/html;charset=UTF-8</value>
                     </list>
                 </property>
-            </bean>u
+            </bean>
         </mvc:message-converters>
         <mvc:argument-resolvers>
             <bean class="com.example.webmvc.framework.FormModelMethodArgumentResolver"/>
