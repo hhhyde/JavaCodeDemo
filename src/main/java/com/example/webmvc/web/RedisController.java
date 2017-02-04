@@ -60,13 +60,20 @@ public class RedisController extends BaseController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/{key}")
     public String getCache(@PathVariable String key) {
+        Object obj = cache.getCache(key, String.class);
+        return obj.toString();
+    }
+
+    @ResponseBody
+    @RequestMapping(method = RequestMethod.GET, value = "/role/{key}")
+    public String getRoleCache(@PathVariable String key) {
         Object obj = cache.getCache(key, Role.class);
         return obj.toString();
     }
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET, value = "/list/{key}")
-    public String getCacheList(@PathVariable String key) {
+    @RequestMapping(method = RequestMethod.GET, value = "/role/list/{key}")
+    public String getRoleCacheList(@PathVariable String key) {
         Object obj = cache.getCacheList(key, Role.class);
         return obj+"";
     }
