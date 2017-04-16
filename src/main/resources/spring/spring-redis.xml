@@ -12,6 +12,14 @@
     <!--引入redis配置-->
     <context:property-placeholder location="classpath:secret.properties" ignore-unresolvable="true"/>
 
+    <!-- redis 单节点数据库连接配置 -->
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="hostName" value="${redis.host}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.pass}"/>
+        <property name="poolConfig" ref="jedisPoolConfig"/>
+    </bean>
+
     <!-- Redis 配置 -->
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <property name="maxTotal" value="${redis.pool.maxTotal}"/>
@@ -87,13 +95,7 @@
         <constructor-arg name="sentinelConfig" ref="sentinelConfiguration" />
     </bean> -->
 
-    <!-- redis 单节点数据库连接配置 -->
-    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-        <property name="hostName" value="${redis.host}"/>
-        <property name="port" value="${redis.port}"/>
-        <property name="password" value="${redis.pass}"/>
-        <property name="poolConfig" ref="jedisPoolConfig"/>
-    </bean>
+
 
     <!-- redisTemplate 配置，redisTemplate 是对 Jedis 的对 redis 操作的扩展，有更多的操作，封装使操作更便捷 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">

@@ -29,10 +29,10 @@
     <!--2. 数据源 druid -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
-        <property name="driverClassName" value="${oracle.driverClassName}"/>
-        <property name="url" value="${oracle.url}"/>
-        <property name="username" value="${oracle.account}"/>
-        <property name="password" value="${oracle.passward}"/>
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.account}"/>
+        <property name="password" value="${db.passward}"/>
 
         <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="${druid.pool.size.init}"/>

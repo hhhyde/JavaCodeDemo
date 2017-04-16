@@ -8,7 +8,7 @@
     <properties resource="secret.properties"/>
 
     <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
-    <classPathEntry location="D:\\Java\\ojdbc14.jar"/>
+    <classPathEntry location="D:\\mysql-connector-java-5.1.40-bin.jar"/>
 
     <context id="tables" targetRuntime="MyBatis3">
 
@@ -20,9 +20,9 @@
         <!-- 注释控制完毕 -->
 
         <!--利用ibatis插件生成model dao相关代码-->
-        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
-                        connectionURL="${oracle.url}" userId="${oracle.userid}"
-                        password="${oracle.passward}">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/km3" userId="root"
+                        password="root">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -30,26 +30,26 @@
         </javaTypeResolver>
 
         <!-- 数据表对应的model 层  -->
-        <javaModelGenerator targetPackage="main.java.com.example.webmvc.entity" targetProject="src">
+        <javaModelGenerator targetPackage="com.example.webmvc.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- sql mapper 隐射配置文件 -->
-        <sqlMapGenerator targetPackage="main.resources.mapper" targetProject="src">
+        <sqlMapGenerator targetPackage="resources.mapper" targetProject="src/main">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 在ibatis2 中是dao层，但在mybatis3中，其实就是mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="main.java.com.example.webmvc.dao" targetProject="src">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.webmvc.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!-- 要对那些数据表进行生成操作，必须要有一个. -->
-        <table schema="checkregulat" tableName="dept" domainObjectName="Dept"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="users"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
         </table>
 
     </context>

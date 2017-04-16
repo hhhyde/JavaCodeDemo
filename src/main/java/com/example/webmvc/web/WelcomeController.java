@@ -1,10 +1,12 @@
 package com.example.webmvc.web;
 
+import com.example.webmvc.dao.UsersMapper;
 import com.example.webmvc.entity.Role;
+import com.example.webmvc.entity.Users;
 import com.example.webmvc.framework.BaseController;
 import com.example.webmvc.framework.FormModel;
 import com.example.webmvc.service.RoleService;
-import org.apache.ibatis.session.SqlSessionFactory;
+import com.example.webmvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,8 +27,11 @@ public class WelcomeController extends BaseController {
     @Autowired
     private RoleService roleService;
 
-    @Autowired()
-    private SqlSessionFactory sqlSessionFactory;
+    @Autowired
+    private UserService userService;
+
+//    @Autowired
+//    private UsersMapper usersMapper;
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
@@ -77,6 +82,14 @@ public class WelcomeController extends BaseController {
     @RequestMapping("testDB")
     public String testDB() {
         Role role = roleService.selectByPrimaryKey(new Long(75));
+        return "200";
+    }
+
+    @ResponseBody
+    @RequestMapping("users")
+    public String users() {
+        Users users = userService.selectByPrimaryKey("admin");
+//        Users users1 = usersMapper.selectByPrimaryKey("admin");
         return "200";
     }
 
