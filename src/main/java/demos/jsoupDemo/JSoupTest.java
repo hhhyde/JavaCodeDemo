@@ -14,6 +14,7 @@ public class JSoupTest {
 			doc = Jsoup.connect("http://club.jd.com/bbs/885047-1-1-4.html").get();
 //			 Elements newsHeadlines = doc.select("#mp-itn b a");
 			System.out.println(doc);
+			System.out.println(doc.getElementsByTag("head").toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

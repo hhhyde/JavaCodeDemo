@@ -40,7 +40,8 @@ dependencies {
             'org.springframework.data:spring-data-redis:1.7.6.RELEASE',
             'com.alibaba:druid:1.0.27',
             'com.dyuproject.protostuff:protostuff-core:1.0.12',
-            'com.dyuproject.protostuff:protostuff-runtime:1.0.12'
+            'com.dyuproject.protostuff:protostuff-runtime:1.0.12',
+            'jstl:jstl:1.2'
 
     // netty 依赖包
     compile 'io.netty:netty-all:5.0.0.Alpha1',

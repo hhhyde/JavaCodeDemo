@@ -4,6 +4,9 @@ import com.example.webmvc.framework.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 @RequestMapping("session")
 @Controller
 public class SessionController extends BaseController {
@@ -23,6 +26,8 @@ public class SessionController extends BaseController {
     @ResponseBody
     @RequestMapping("{key}")
     public String getSession(@PathVariable String key){
+        Lock lock=new ReentrantLock();
+        lock.lock();
         Object value=request.getSession().getAttribute(key);
         return null==value?"null":value.toString();
     }
