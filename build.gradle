@@ -62,4 +62,9 @@ dependencies {
             'joda-time:joda-time:2.6',
             'com.thoughtworks.qdox:qdox:1.12.1',
             'commons-logging:commons-logging:1.1.1'
+
+    // swagger 依赖
+    compile 'io.springfox:springfox-swagger2:2.2.2'
+//
+    compile 'io.springfox:springfox-swagger-ui:2.2.2'
 }
