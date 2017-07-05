@@ -10,11 +10,8 @@ public class WebController {
 
     @ResponseBody
     @RequestMapping("hello")
-    private String hello(){
+    private String hello() {
         return "hello尽可能432555";
     }
-
-
-
 
 }
