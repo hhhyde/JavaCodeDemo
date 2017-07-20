@@ -10,15 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RequestMapping("redis")
 @Scope("prototype")
 @Controller
-@EnableSwagger2
 @Api(value = "SayController|一个用来测试swagger注解的控制器")
 public class RedisController extends BaseController {
 
@@ -36,9 +35,9 @@ public class RedisController extends BaseController {
         role.setF1("F1");
         role.setLevelId("33");
         if (null == expireTime) {
-            cache.putCache("role", role);
+            cache.setOneDay("role", role);
         } else {
-            cache.putCache("role", role, expireTime);
+            cache.set("role", role, expireTime, TimeUnit.SECONDS);
         }
         return "200";
     }
@@ -60,7 +59,7 @@ public class RedisController extends BaseController {
         roleList.add(role1);
         roleList.add(role2);
 
-        cache.putCache("roleList", roleList);
+        cache.setOneDay("roleList", roleList);
 
         return "200";
     }
@@ -68,21 +67,21 @@ public class RedisController extends BaseController {
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/{key}")
     public String getCache(@PathVariable String key) {
-        Object obj = cache.getCache(key, String.class);
+        Object obj = cache.get(key);
         return obj.toString();
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/role/{key}")
     public String getRoleCache(@PathVariable String key) {
-        Object obj = cache.getCache(key, Role.class);
+        Object obj = cache.get(key);
         return obj.toString();
     }
 
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET, value = "/role/list/{key}")
     public String getRoleCacheList(@PathVariable String key) {
-        Object obj = cache.getCacheList(key, Role.class);
+        Object obj = cache.get(key);
         return obj+"";
     }
 
