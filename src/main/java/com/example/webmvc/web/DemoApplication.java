@@ -10,8 +10,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Import({SwaggerConfig.class})
 @SpringBootApplication
 @EnableSwagger2
+@ComponentScan(value = {"com.example.webmvc.web","com.example.webmvc.cache"})
 @ComponentScan("com.example.webmvc.web")
-@ComponentScan("com.example.webmvc.cache")
 public class DemoApplication {
 
     public static void main(String[] args) {

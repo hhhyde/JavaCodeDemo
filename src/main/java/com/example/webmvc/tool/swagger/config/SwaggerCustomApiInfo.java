@@ -6,15 +6,15 @@ import springfox.documentation.service.Contact;
 
 public class SwaggerCustomApiInfo {
 
-    private static String TITLE = "Swagger demo REST API";
-    private static String DESCRIPTION = "Custom description of API";
-    private static String API_VERSION = "API Version";
+    private static String TITLE = "XX系统接口API";
+    private static String DESCRIPTION = "XX系统描述";
+    private static String API_VERSION = "1.0";
     private static String TERMS_OF_SERVICES_URL = "Terms of services URL";
-    private static String CONTACT_NAME = "Elena Miovska";
-    private static String CONTACT_URL = "Contact URL";
-    private static String CONTACT_EMAIL = "elena.miovska.1@bg.ibm.com";
+    private static String CONTACT_NAME = "光头强";
+    private static String CONTACT_URL = "联系地址";
+    private static String CONTACT_EMAIL = "联系邮箱";
     private static String LICENSE = "License";
-    private static String LICENSE_URL = "License URL";
+    private static String LICENSE_URL = "License 地址";
 
     private static Contact CONTACT = new Contact(CONTACT_NAME, CONTACT_URL, CONTACT_EMAIL);
 
