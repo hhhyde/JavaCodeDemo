@@ -11,7 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @ComponentScan(value = {"com.example.webmvc.web","com.example.webmvc.cache"})
-@ComponentScan("com.example.webmvc.web")
 public class DemoApplication {
 
     public static void main(String[] args) {
