@@ -15,7 +15,6 @@ import static com.example.webmvc.tool.swagger.config.SwaggerResponseMessage.buil
 
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
     @Bean
     public Docket api() {

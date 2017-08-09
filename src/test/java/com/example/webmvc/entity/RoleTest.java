@@ -1,11 +1,19 @@
 package com.example.webmvc.entity;
 
 import com.example.webmvc.dao.RoleDao;
+import com.example.webmvc.dao.UsersMapper;
+import com.example.webmvc.web.DemoApplication;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -13,34 +21,24 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
 
-/**
- * Created by Administrator on 2017/1/23.
- */
-@ContextConfiguration("classpath:spring/spring-*.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(DemoApplication.class)
 public class RoleTest {
     private static Validator validator;
 
     @Autowired
     private RoleDao roleDao;
+    @Autowired
+    private UsersMapper usersMapper;
 
-    @BeforeClass
-    public static void setUp() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
-    }
+    @Value("${mode}")
+    private String mode;
 
-    @Test
-    public void roleTooShort() {
-        Role role = new Role();
-        role.setRoleid(222L);
-        Set<ConstraintViolation<Role>> constraintViolations = validator.validate(role);
-        Assert.assertEquals(1, constraintViolations.size());
-        Assert.assertEquals("roleID too short", constraintViolations.iterator().next().getMessage());
-    }
 
     @Test
-    public void roleMapperText(){
-        Role role = roleDao.selectByPrimaryKey(75L);
-        Assert.assertNotNull(role);
+    public void userIsExist(){
+        System.out.println(mode);
+        Users users = usersMapper.selectByPrimaryKey("admin");
+        Assert.assertNotNull(users);
     }
 }
