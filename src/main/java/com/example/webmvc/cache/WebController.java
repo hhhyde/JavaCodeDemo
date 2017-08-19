@@ -1,5 +1,6 @@
 package com.example.webmvc.cache;
 
+import com.example.webmvc.tool.swagger.annotation.SwaggerIgnore;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+@SwaggerIgnore
 @Controller
 @RequestMapping("web")
 @ComponentScan

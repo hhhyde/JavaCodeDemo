@@ -85,7 +85,6 @@ public class WelcomeController extends BaseController {
     @RequestMapping("users")
     public String users() {
         Users users = userService.selectByPrimaryKey("admin");
-//        Users users1 = usersMapper.selectByPrimaryKey("admin");
         return "200";
     }
 
