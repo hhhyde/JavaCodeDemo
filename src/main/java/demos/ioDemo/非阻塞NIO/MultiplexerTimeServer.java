@@ -54,7 +54,6 @@ public class MultiplexerTimeServer implements Runnable {
 	@Override
 	public void run() {
 		while (!stop) {
-			System.out.print("1");
 			try {
 				selector.select(1000);
 				Set<SelectionKey> selectedKeys = selector.selectedKeys();

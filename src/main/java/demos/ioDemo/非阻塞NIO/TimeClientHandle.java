@@ -123,7 +123,7 @@ public class TimeClientHandle implements Runnable {
 	}
 
 	private void doWrite(SocketChannel sc) throws IOException {
-		byte[] req = "QUERY TIME ORDER".getBytes();
+		byte[] req = "QUERY TIME ORDER2".getBytes();
 		ByteBuffer writeBuffer = ByteBuffer.allocate(req.length);
 		writeBuffer.put(req);
 		writeBuffer.flip();
