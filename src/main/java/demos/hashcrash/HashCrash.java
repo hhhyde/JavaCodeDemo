@@ -10,28 +10,23 @@
  */
 package demos.hashcrash;
 
-import demos.a10_16.a10_16;
 
 /**
  * <一句话功能简述>
  * <功能详细描述>
- * 
- * @author  姓名 工号
- * @version  [版本号, 2012-4-17]
- * @see  [相关类/方法]
- * @since  [产品/模块版本]
+ *
+ * @author 姓名 工号
+ * @version [版本号, 2012-4-17]
+ * @see [相关类/方法]
+ * @since [产品/模块版本]
  */
-public class HashCrash
-{
-    public static void main(String[] args)
-    {
-        String aa="XX";
+public class HashCrash {
+    public static void main(String[] args) {
+        String aa = "XX";
         System.out.println(aa.hashCode());
-        a10_16 a=new a10_16();
-        System.out.println(a.hashCode());
-        Integer b=10000;
+        Integer b = 10000;
         System.out.println(b.hashCode());
-        long hh=Long.valueOf("a",16);
+        long hh = Long.valueOf("a", 16);
         System.out.println(hh);
     }
 }

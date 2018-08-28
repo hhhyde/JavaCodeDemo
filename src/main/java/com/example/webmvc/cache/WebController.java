@@ -19,8 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 @ComponentScan
 public class WebController {
 
-    @Value("${demo.hello}")
-    private String hello;
+    private String hello="aaa";
 
     @Autowired
     private CounterService counterService;

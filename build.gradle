@@ -4,10 +4,18 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'war'
 
+
 sourceCompatibility = 1.8
 
+// 编码GBK的不可映射字符
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.example.webmvc.web.DemoApplication'
+    }
 }
 
 ext {
@@ -17,6 +25,7 @@ ext {
 repositories {
     maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
 }
+
 
 dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5',
@@ -71,12 +80,23 @@ dependencies {
             'org.apache.ant:ant:1.9.4',
             'joda-time:joda-time:2.6',
             'com.thoughtworks.qdox:qdox:1.12.1',
-            'commons-logging:commons-logging:1.1.1'
+            'commons-logging:commons-logging:1.1.1',
+            'jaxen:jaxen:1.1.6'
 
     // swagger 依赖
     compile 'io.springfox:springfox-swagger2:2.6.0'
 //
     compile 'io.springfox:springfox-swagger-ui:2.6.0'
 
-    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    // 添加thymeleaf依赖
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:1.3.7.RELEASE'
+
+    // 热部署 http://www.jianshu.com/p/14963f5fdaae
+    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '1.3.7.RELEASE'
+
+
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.3.7.RELEASE') {
+        exclude(module: 'commons-logging')
+    }
+
 }
