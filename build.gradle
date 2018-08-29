@@ -83,6 +83,9 @@ dependencies {
             'commons-logging:commons-logging:1.1.1',
             'jaxen:jaxen:1.1.6'
 
+    // 调用python
+    compile 'org.python:jython-standalone:2.7.0'
+
     // swagger 依赖
     compile 'io.springfox:springfox-swagger2:2.6.0'
 //

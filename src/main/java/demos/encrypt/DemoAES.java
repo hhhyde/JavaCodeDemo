@@ -39,7 +39,6 @@ public class DemoAES {
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] p = plainText.getBytes("UTF-8");
         byte[] result = cipher.doFinal(p);
-        new BigInteger()
         BigInteger bigInt = new BigInteger(1,result);
         return bigInt.toString();
     }
