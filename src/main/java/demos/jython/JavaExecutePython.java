@@ -23,6 +23,7 @@ public class JavaExecutePython {
     @Test
     public void test01() {
         interpreter.exec("days=('mod','Tue','Wed','Thu','Fri','Sat','Sun'); ");
+        System.out.println(666);
         interpreter.exec("print days[1];");
     }
 
