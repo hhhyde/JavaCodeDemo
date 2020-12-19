@@ -1,10 +1,5 @@
 package demos.encrypt;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.codec.digest.Md5Crypt;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import java.io.UnsupportedEncodingException;
@@ -39,7 +34,7 @@ public class DemoAES {
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] p = plainText.getBytes("UTF-8");
         byte[] result = cipher.doFinal(p);
-        BigInteger bigInt = new BigInteger(1,result);
+        BigInteger bigInt = new BigInteger(1, result);
         return bigInt.toString();
     }
 
@@ -61,8 +56,8 @@ public class DemoAES {
         try {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            BigInteger bigInteger =new BigInteger(cipherText,16);
-            byte[] c =bigInteger.toByteArray();
+            BigInteger bigInteger = new BigInteger(cipherText, 16);
+            byte[] c = bigInteger.toByteArray();
             byte[] result = cipher.doFinal(c);
             String plainText = new String(result, "UTF-8");
             System.out.println(plainText);

@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class DemoBlowfish {
 
-    public  static void main(String[] ss) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
+    public static void main(String[] ss) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
         Blowfish blowfish = new Blowfish("abc");
         System.out.println(blowfish.encryptString("123456"));
         String crypt1 = new Blowfish("abc").encryptString("123456");
